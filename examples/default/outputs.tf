@@ -18,6 +18,10 @@ output "cname_record_outputs" {
   value       = module.dns_zones.cname_record_outputs
 }
 
+output "dns_zone_id" {
+  value = module.dns_zones.resource_id
+}
+
 output "mx_record_outputs" {
   description = "The mx record output"
   value       = module.dns_zones.mx_record_outputs
@@ -26,11 +30,6 @@ output "mx_record_outputs" {
 output "ns_record_outputs" {
   description = "The ns record output"
   value       = module.dns_zones.ns_record_outputs
-}
-
-output "private_dns_zone_output" {
-  description = "The private dns zone output"
-  value       = module.dns_zones.resource
 }
 
 output "ptr_record_outputs" {

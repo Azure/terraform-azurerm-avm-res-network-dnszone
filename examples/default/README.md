@@ -116,6 +116,10 @@ Description: The aaa record output
 
 Description: The cname record output
 
+### <a name="output_dns_zone_id"></a> [dns\_zone\_id](#output\_dns\_zone\_id)
+
+Description: n/a
+
 ### <a name="output_mx_record_outputs"></a> [mx\_record\_outputs](#output\_mx\_record\_outputs)
 
 Description: The mx record output
@@ -123,10 +127,6 @@ Description: The mx record output
 ### <a name="output_ns_record_outputs"></a> [ns\_record\_outputs](#output\_ns\_record\_outputs)
 
 Description: The ns record output
-
-### <a name="output_private_dns_zone_output"></a> [private\_dns\_zone\_output](#output\_private\_dns\_zone\_output)
-
-Description: The private dns zone output
 
 ### <a name="output_ptr_record_outputs"></a> [ptr\_record\_outputs](#output\_ptr\_record\_outputs)
 
