@@ -56,12 +56,6 @@ The following resources are used by this module:
 
 The following input variables are required:
 
-### <a name="input_location"></a> [location](#input\_location)
-
-Description: Azure region where the resource should be deployed.
-
-Type: `string`
-
 ### <a name="input_name"></a> [name](#input\_name)
 
 Description: The name of the this resource.
@@ -304,10 +298,6 @@ Description: The caa record output
 
 Description: The cname record output
 
-### <a name="output_id"></a> [id](#output\_id)
-
-Description: Id of dns zone
-
 ### <a name="output_max_number_of_record_sets"></a> [max\_number\_of\_record\_sets](#output\_max\_number\_of\_record\_sets)
 
 Description: Maximum number of Records in Zone output
@@ -331,6 +321,10 @@ Description: Number of records in DNS Zone
 ### <a name="output_ptr_record_outputs"></a> [ptr\_record\_outputs](#output\_ptr\_record\_outputs)
 
 Description: The ptr record output
+
+### <a name="output_resource_id"></a> [resource\_id](#output\_resource\_id)
+
+Description: Id of dns zone
 
 ### <a name="output_srv_record_outputs"></a> [srv\_record\_outputs](#output\_srv\_record\_outputs)
 

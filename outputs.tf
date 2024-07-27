@@ -42,11 +42,6 @@ output "cname_record_outputs" {
   }
 }
 
-output "id" {
-  description = "Id of dns zone"
-  value       = azurerm_dns_zone.zone.id
-}
-
 output "max_number_of_record_sets" {
   description = "Maximum number of Records in Zone output"
   value       = azurerm_dns_zone.zone.max_number_of_record_sets
@@ -93,6 +88,11 @@ output "ptr_record_outputs" {
       fqdn = record.fqdn
     }
   }
+}
+
+output "resource_id" {
+  description = "Id of dns zone"
+  value       = azurerm_dns_zone.zone.id
 }
 
 output "srv_record_outputs" {

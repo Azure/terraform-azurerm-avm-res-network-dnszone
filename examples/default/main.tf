@@ -5,10 +5,6 @@ terraform {
       source  = "hashicorp/azurerm"
       version = "~> 3.74"
     }
-    modtm = {
-      source  = "azure/modtm"
-      version = "~> 0.3"
-    }
     random = {
       source  = "hashicorp/random"
       version = "~> 3.5"
@@ -47,11 +43,10 @@ resource "azurerm_resource_group" "avmrg" {
 }
 
 
-module "test" {
+module "dns_zones" {
   source = "../../"
   # source             = "Azure/avm-<res/ptn>-<name>/azurerm"
   # ...
-  location            = azurerm_resource_group.avmrg.location
   name                = local.name
   resource_group_name = azurerm_resource_group.avmrg.name
   tags                = local.tags
@@ -64,5 +59,5 @@ module "test" {
   ptr_records         = local.ptr_records
   srv_records         = local.srv_records
   txt_records         = local.txt_records
-  enable_telemetry    = var.enable_telemetry
+  enable_telemetry    = local.enable_telemetry
 }

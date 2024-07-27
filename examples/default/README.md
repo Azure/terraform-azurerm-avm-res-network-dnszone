@@ -11,10 +11,6 @@ terraform {
       source  = "hashicorp/azurerm"
       version = "~> 3.74"
     }
-    modtm = {
-      source  = "azure/modtm"
-      version = "~> 0.3"
-    }
     random = {
       source  = "hashicorp/random"
       version = "~> 3.5"
@@ -53,11 +49,10 @@ resource "azurerm_resource_group" "avmrg" {
 }
 
 
-module "test" {
+module "dns_zones" {
   source = "../../"
   # source             = "Azure/avm-<res/ptn>-<name>/azurerm"
   # ...
-  location            = azurerm_resource_group.avmrg.location
   name                = local.name
   resource_group_name = azurerm_resource_group.avmrg.name
   tags                = local.tags
@@ -70,7 +65,7 @@ module "test" {
   ptr_records         = local.ptr_records
   srv_records         = local.srv_records
   txt_records         = local.txt_records
-  enable_telemetry    = var.enable_telemetry
+  enable_telemetry    = local.enable_telemetry
 }
 ```
 
@@ -82,8 +77,6 @@ The following requirements are needed by this module:
 - <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) (~> 1.5)
 
 - <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (~> 3.74)
-
-- <a name="requirement_modtm"></a> [modtm](#requirement\_modtm) (~> 0.3)
 
 - <a name="requirement_random"></a> [random](#requirement\_random) (~> 3.5)
 
@@ -101,25 +94,61 @@ No required inputs.
 
 ## Optional Inputs
 
-The following input variables are optional (have default values):
-
-### <a name="input_enable_telemetry"></a> [enable\_telemetry](#input\_enable\_telemetry)
-
-Description: This variable controls whether or not telemetry is enabled for the module.  
-For more information see <https://aka.ms/avm/telemetryinfo>.  
-If it is set to false, then no telemetry will be collected.
-
-Type: `bool`
-
-Default: `true`
+No optional inputs.
 
 ## Outputs
 
-No outputs.
+The following outputs are exported:
+
+### <a name="output_a_record_outputs"></a> [a\_record\_outputs](#output\_a\_record\_outputs)
+
+Description: The a record output
+
+### <a name="output_aaaa_record_outputs"></a> [aaaa\_record\_outputs](#output\_aaaa\_record\_outputs)
+
+Description: The aaaa record output
+
+### <a name="output_caa_record_outputs"></a> [caa\_record\_outputs](#output\_caa\_record\_outputs)
+
+Description: The aaa record output
+
+### <a name="output_cname_record_outputs"></a> [cname\_record\_outputs](#output\_cname\_record\_outputs)
+
+Description: The cname record output
+
+### <a name="output_mx_record_outputs"></a> [mx\_record\_outputs](#output\_mx\_record\_outputs)
+
+Description: The mx record output
+
+### <a name="output_ns_record_outputs"></a> [ns\_record\_outputs](#output\_ns\_record\_outputs)
+
+Description: The ns record output
+
+### <a name="output_private_dns_zone_output"></a> [private\_dns\_zone\_output](#output\_private\_dns\_zone\_output)
+
+Description: The private dns zone output
+
+### <a name="output_ptr_record_outputs"></a> [ptr\_record\_outputs](#output\_ptr\_record\_outputs)
+
+Description: The ptr record output
+
+### <a name="output_srv_record_outputs"></a> [srv\_record\_outputs](#output\_srv\_record\_outputs)
+
+Description: The srv record output
+
+### <a name="output_txt_record_outputs"></a> [txt\_record\_outputs](#output\_txt\_record\_outputs)
+
+Description: The txt record output
 
 ## Modules
 
 The following Modules are called:
+
+### <a name="module_dns_zones"></a> [dns\_zones](#module\_dns\_zones)
+
+Source: ../../
+
+Version:
 
 ### <a name="module_naming"></a> [naming](#module\_naming)
 
@@ -132,12 +161,6 @@ Version: ~> 0.3
 Source: Azure/regions/azurerm
 
 Version: ~> 0.3
-
-### <a name="module_test"></a> [test](#module\_test)
-
-Source: ../../
-
-Version:
 
 <!-- markdownlint-disable-next-line MD041 -->
 ## Data Collection
