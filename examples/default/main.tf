@@ -5,10 +5,6 @@ terraform {
       source  = "hashicorp/azurerm"
       version = "~> 3.74"
     }
-    modtm = {
-      source  = "azure/modtm"
-      version = "~> 0.3"
-    }
     random = {
       source  = "hashicorp/random"
       version = "~> 3.5"
@@ -41,23 +37,27 @@ module "naming" {
   version = "~> 0.3"
 }
 
-# This is required for resource modules
-resource "azurerm_resource_group" "this" {
-  location = module.regions.regions[random_integer.region_index.result].name
-  name     = module.naming.resource_group.name_unique
+resource "azurerm_resource_group" "avmrg" {
+  location = "EastUS"
+  name     = "avmrg"
 }
 
-# This is the module call
-# Do not specify location here due to the randomization above.
-# Leaving location as `null` will cause the module to use the resource group location
-# with a data source.
-module "test" {
+
+module "dns_zones" {
   source = "../../"
   # source             = "Azure/avm-<res/ptn>-<name>/azurerm"
   # ...
-  location            = azurerm_resource_group.this.location
-  name                = "TODO" # TODO update with module.naming.<RESOURCE_TYPE>.name_unique
-  resource_group_name = azurerm_resource_group.this.name
-
-  enable_telemetry = var.enable_telemetry # see variables.tf
+  name                = local.name
+  resource_group_name = azurerm_resource_group.avmrg.name
+  tags                = local.tags
+  caa_records         = local.caa_records
+  aaaa_records        = local.aaaa_records
+  ns_records          = local.ns_records
+  a_records           = local.a_records
+  cname_records       = local.cname_records
+  mx_records          = local.mx_records
+  ptr_records         = local.ptr_records
+  srv_records         = local.srv_records
+  txt_records         = local.txt_records
+  enable_telemetry    = local.enable_telemetry
 }
