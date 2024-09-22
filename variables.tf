@@ -16,7 +16,7 @@ variable "a_records" {
     resource_group_name = string
     zone_name           = string
     ttl                 = number
-    records             = list(string)
+    records             = optional(list(string))
     target_resource_id  = optional(string)
     tags                = optional(map(string), null)
   }))
@@ -30,7 +30,7 @@ variable "aaaa_records" {
     resource_group_name = string
     zone_name           = string
     ttl                 = number
-    records             = list(string)
+    records             = optional(list(string))
     target_resource_id  = optional(string)
     tags                = optional(map(string), null)
   }))

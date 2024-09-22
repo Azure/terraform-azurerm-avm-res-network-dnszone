@@ -84,7 +84,7 @@ map(object({
     resource_group_name = string
     zone_name           = string
     ttl                 = number
-    records             = list(string)
+    records             = optional(list(string))
     target_resource_id  = optional(string)
     tags                = optional(map(string), null)
   }))
@@ -104,7 +104,7 @@ map(object({
     resource_group_name = string
     zone_name           = string
     ttl                 = number
-    records             = list(string)
+    records             = optional(list(string))
     target_resource_id  = optional(string)
     tags                = optional(map(string), null)
   }))
