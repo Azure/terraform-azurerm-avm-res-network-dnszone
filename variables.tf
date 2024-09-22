@@ -22,6 +22,15 @@ variable "a_records" {
   }))
   default     = {}
   description = "A map of objects where each object contains information to create a A record."
+  validation {
+    condition = alltrue([
+      for k, v in var.a_records : (
+        !(v.records != null && v.target_resource_id != null) &&
+        (v.records != null || v.target_resource_id != null)
+      )
+    ])
+    error_message = "Either 'records' or 'target_resource_id' must be specified for each A record in 'a_records' at a time."
+  }
 }
 
 variable "aaaa_records" {
@@ -36,6 +45,15 @@ variable "aaaa_records" {
   }))
   default     = {}
   description = "A map of objects where each object contains information to create a AAAA record."
+  validation {
+    condition = alltrue([
+      for k, v in var.aaaa_records : (
+        !(v.records != null && v.target_resource_id != null) &&
+        (v.records != null || v.target_resource_id != null)
+      )
+    ])
+    error_message = "Either 'records' or 'target_resource_id' must be specified for each AAAA record in 'aaaa_records' at a time."
+  }
 }
 
 variable "caa_records" {
