@@ -44,6 +44,7 @@ resource "azurerm_dns_caa_record" "record" {
 
   dynamic "record" {
     for_each = each.value.record
+
     content {
       flags = record.value.flags
       tag   = record.value.tag
@@ -79,6 +80,7 @@ resource "azurerm_dns_mx_record" "record" {
 
   dynamic "record" {
     for_each = each.value.records
+
     content {
       exchange   = record.value.exchange
       preference = record.value.preference
@@ -125,6 +127,7 @@ resource "azurerm_dns_srv_record" "record" {
 
   dynamic "record" {
     for_each = each.value.records
+
     content {
       port     = record.value.port
       priority = record.value.priority
@@ -147,6 +150,7 @@ resource "azurerm_dns_txt_record" "record" {
 
   dynamic "record" {
     for_each = each.value.records
+
     content {
       value = record.value.value
     }
