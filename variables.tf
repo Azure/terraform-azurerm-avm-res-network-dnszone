@@ -16,12 +16,21 @@ variable "a_records" {
     resource_group_name = string
     zone_name           = string
     ttl                 = number
-    records             = list(string)
+    records             = optional(list(string))
     target_resource_id  = optional(string)
     tags                = optional(map(string), null)
   }))
   default     = {}
   description = "A map of objects where each object contains information to create a A record."
+  validation {
+    condition = alltrue([
+      for k, v in var.a_records : (
+        !(v.records != null && v.target_resource_id != null) &&
+        (v.records != null || v.target_resource_id != null)
+      )
+    ])
+    error_message = "Either 'records' or 'target_resource_id' must be specified for each A record in 'a_records' at a time."
+  }
 }
 
 variable "aaaa_records" {
@@ -30,12 +39,21 @@ variable "aaaa_records" {
     resource_group_name = string
     zone_name           = string
     ttl                 = number
-    records             = list(string)
+    records             = optional(list(string))
     target_resource_id  = optional(string)
     tags                = optional(map(string), null)
   }))
   default     = {}
   description = "A map of objects where each object contains information to create a AAAA record."
+  validation {
+    condition = alltrue([
+      for k, v in var.aaaa_records : (
+        !(v.records != null && v.target_resource_id != null) &&
+        (v.records != null || v.target_resource_id != null)
+      )
+    ])
+    error_message = "Either 'records' or 'target_resource_id' must be specified for each AAAA record in 'aaaa_records' at a time."
+  }
 }
 
 variable "caa_records" {
