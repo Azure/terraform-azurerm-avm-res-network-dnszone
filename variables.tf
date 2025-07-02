@@ -22,6 +22,7 @@ variable "a_records" {
   }))
   default     = {}
   description = "A map of objects where each object contains information to create a A record."
+
   validation {
     condition = alltrue([
       for k, v in var.a_records : (
@@ -45,6 +46,7 @@ variable "aaaa_records" {
   }))
   default     = {}
   description = "A map of objects where each object contains information to create a AAAA record."
+
   validation {
     condition = alltrue([
       for k, v in var.aaaa_records : (

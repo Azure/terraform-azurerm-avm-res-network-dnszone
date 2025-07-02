@@ -6,6 +6,7 @@ This deploys the module in its simplest form.
 ```hcl
 terraform {
   required_version = "~> 1.5"
+
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
@@ -51,21 +52,22 @@ resource "azurerm_resource_group" "avmrg" {
 
 module "dns_zones" {
   source = "../../"
+
   # source             = "Azure/avm-<res/ptn>-<name>/azurerm"
   # ...
   name                = local.name
   resource_group_name = azurerm_resource_group.avmrg.name
-  tags                = local.tags
-  caa_records         = local.caa_records
-  aaaa_records        = local.aaaa_records
-  ns_records          = local.ns_records
   a_records           = local.a_records
+  aaaa_records        = local.aaaa_records
+  caa_records         = local.caa_records
   cname_records       = local.cname_records
+  enable_telemetry    = local.enable_telemetry
   mx_records          = local.mx_records
+  ns_records          = local.ns_records
   ptr_records         = local.ptr_records
   srv_records         = local.srv_records
+  tags                = local.tags
   txt_records         = local.txt_records
-  enable_telemetry    = local.enable_telemetry
 }
 ```
 
