@@ -56,6 +56,7 @@ module "dns_zones" {
   caa_records         = local.caa_records
   cname_records       = local.cname_records
   enable_telemetry    = local.enable_telemetry
+  lock                = local.lock
   mx_records          = local.mx_records
   ns_records          = local.ns_records
   ptr_records         = local.ptr_records

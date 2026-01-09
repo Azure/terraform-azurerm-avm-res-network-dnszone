@@ -69,6 +69,10 @@ locals {
     }
   }
   enable_telemetry = false
+  lock = {
+    kind = "CanNotDelete"
+    name = "dns-zone-lock" # Optional - a default will be generated if not specified
+  }
   mx_records = {
     "mx_record" = {
       name                = "mx_record"

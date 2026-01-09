@@ -116,3 +116,8 @@ output "txt_record_outputs" {
     }
   }
 }
+
+output "lock" {
+  description = "The lock resource. This will be `null` if no lock is configured."
+  value       = var.lock != null ? azurerm_management_lock.this[0] : null
+}
