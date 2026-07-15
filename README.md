@@ -23,319 +23,72 @@ Things to do:
 <!-- markdownlint-disable MD033 -->
 ## Requirements
 
-The following requirements are needed by this module:
-
-- <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) (~> 1.5)
-
-- <a name="requirement_azapi"></a> [azapi](#requirement\_azapi) (~> 2.4)
-
-- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (>= 3.71, < 5.0)
-
-- <a name="requirement_modtm"></a> [modtm](#requirement\_modtm) (~> 0.3)
-
-- <a name="requirement_random"></a> [random](#requirement\_random) (~> 3.5)
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.5 |
+| <a name="requirement_azapi"></a> [azapi](#requirement\_azapi) | ~> 2.4 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 3.71, < 5.0 |
+| <a name="requirement_modtm"></a> [modtm](#requirement\_modtm) | ~> 0.3 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | ~> 3.5 |
 
 ## Resources
 
-The following resources are used by this module:
-
-- [azurerm_dns_a_record.record](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_a_record) (resource)
-- [azurerm_dns_aaaa_record.record](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_aaaa_record) (resource)
-- [azurerm_dns_caa_record.record](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_caa_record) (resource)
-- [azurerm_dns_cname_record.record](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_cname_record) (resource)
-- [azurerm_dns_mx_record.record](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_mx_record) (resource)
-- [azurerm_dns_ns_record.record](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_ns_record) (resource)
-- [azurerm_dns_ptr_record.record](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_ptr_record) (resource)
-- [azurerm_dns_srv_record.record](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_srv_record) (resource)
-- [azurerm_dns_txt_record.record](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_txt_record) (resource)
-- [azurerm_dns_zone.zone](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_zone) (resource)
-- [modtm_telemetry.telemetry](https://registry.terraform.io/providers/azure/modtm/latest/docs/resources/telemetry) (resource)
-- [random_uuid.telemetry](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/uuid) (resource)
-- [azapi_client_config.telemetry](https://registry.terraform.io/providers/Azure/azapi/latest/docs/data-sources/client_config) (data source)
-- [modtm_module_source.telemetry](https://registry.terraform.io/providers/azure/modtm/latest/docs/data-sources/module_source) (data source)
+| Name | Type |
+|------|------|
+| [azurerm_dns_a_record.record](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_a_record) | resource |
+| [azurerm_dns_aaaa_record.record](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_aaaa_record) | resource |
+| [azurerm_dns_caa_record.record](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_caa_record) | resource |
+| [azurerm_dns_cname_record.record](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_cname_record) | resource |
+| [azurerm_dns_mx_record.record](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_mx_record) | resource |
+| [azurerm_dns_ns_record.record](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_ns_record) | resource |
+| [azurerm_dns_ptr_record.record](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_ptr_record) | resource |
+| [azurerm_dns_srv_record.record](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_srv_record) | resource |
+| [azurerm_dns_txt_record.record](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_txt_record) | resource |
+| [azurerm_dns_zone.zone](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_zone) | resource |
+| [azurerm_management_lock.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_lock) | resource |
+| [modtm_telemetry.telemetry](https://registry.terraform.io/providers/azure/modtm/latest/docs/resources/telemetry) | resource |
+| [random_uuid.telemetry](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/uuid) | resource |
+| [azapi_client_config.telemetry](https://registry.terraform.io/providers/Azure/azapi/latest/docs/data-sources/client_config) | data source |
+| [modtm_module_source.telemetry](https://registry.terraform.io/providers/azure/modtm/latest/docs/data-sources/module_source) | data source |
 
 <!-- markdownlint-disable MD013 -->
-## Required Inputs
+## Inputs
 
-The following input variables are required:
-
-### <a name="input_name"></a> [name](#input\_name)
-
-Description: The name of the this resource.
-
-Type: `string`
-
-### <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name)
-
-Description: The resource group where the resources will be deployed.
-
-Type: `string`
-
-## Optional Inputs
-
-The following input variables are optional (have default values):
-
-### <a name="input_a_records"></a> [a\_records](#input\_a\_records)
-
-Description: A map of objects where each object contains information to create a A record.
-
-Type:
-
-```hcl
-map(object({
-    name                = string
-    resource_group_name = string
-    zone_name           = string
-    ttl                 = number
-    records             = optional(list(string))
-    target_resource_id  = optional(string)
-    tags                = optional(map(string), null)
-  }))
-```
-
-Default: `{}`
-
-### <a name="input_aaaa_records"></a> [aaaa\_records](#input\_aaaa\_records)
-
-Description: A map of objects where each object contains information to create a AAAA record.
-
-Type:
-
-```hcl
-map(object({
-    name                = string
-    resource_group_name = string
-    zone_name           = string
-    ttl                 = number
-    records             = optional(list(string))
-    target_resource_id  = optional(string)
-    tags                = optional(map(string), null)
-  }))
-```
-
-Default: `{}`
-
-### <a name="input_caa_records"></a> [caa\_records](#input\_caa\_records)
-
-Description: A map of objects where each object contains information to create a CAA record.
-
-Type:
-
-```hcl
-map(object({
-    name                = string
-    resource_group_name = string
-    zone_name           = string
-    ttl                 = number
-    record = map(object({
-      flags = string
-      tag   = string
-      value = string
-    }))
-    tags = optional(map(string), null)
-  }))
-```
-
-Default: `{}`
-
-### <a name="input_cname_records"></a> [cname\_records](#input\_cname\_records)
-
-Description: A map of objects where each object contains information to create a CNAME record.
-
-Type:
-
-```hcl
-map(object({
-    name                = string
-    resource_group_name = string
-    zone_name           = string
-    ttl                 = number
-    record              = string
-    tags                = optional(map(string), null)
-    target_resource_id  = optional(string)
-  }))
-```
-
-Default: `{}`
-
-### <a name="input_enable_telemetry"></a> [enable\_telemetry](#input\_enable\_telemetry)
-
-Description: This variable controls whether or not telemetry is enabled for the module.  
-For more information see <https://aka.ms/avm/telemetryinfo>.  
-If it is set to false, then no telemetry will be collected.
-
-Type: `bool`
-
-Default: `true`
-
-### <a name="input_mx_records"></a> [mx\_records](#input\_mx\_records)
-
-Description: A map of objects where each object contains information to create a MX record.
-
-Type:
-
-```hcl
-map(object({
-    name                = optional(string, "@")
-    resource_group_name = string
-    zone_name           = string
-    ttl                 = number
-    records = map(object({
-      preference = number
-      exchange   = string
-    }))
-    tags = optional(map(string), null)
-  }))
-```
-
-Default: `{}`
-
-### <a name="input_ns_records"></a> [ns\_records](#input\_ns\_records)
-
-Description: A map of objects where each object contains information to create a NS record.
-
-Type:
-
-```hcl
-map(object({
-    name                = string
-    resource_group_name = string
-    zone_name           = string
-    ttl                 = number
-    records             = list(string)
-    tags                = optional(map(string), null)
-  }))
-```
-
-Default: `{}`
-
-### <a name="input_ptr_records"></a> [ptr\_records](#input\_ptr\_records)
-
-Description: A map of objects where each object contains information to create a PTR record.
-
-Type:
-
-```hcl
-map(object({
-    name                = string
-    resource_group_name = string
-    zone_name           = string
-    ttl                 = number
-    records             = list(string)
-    tags                = optional(map(string), null)
-  }))
-```
-
-Default: `{}`
-
-### <a name="input_srv_records"></a> [srv\_records](#input\_srv\_records)
-
-Description: A map of objects where each object contains information to create a SRV record.
-
-Type:
-
-```hcl
-map(object({
-    name                = string
-    resource_group_name = string
-    zone_name           = string
-    ttl                 = number
-    records = map(object({
-      priority = number
-      weight   = number
-      port     = number
-      target   = string
-    }))
-    tags = optional(map(string), null)
-  }))
-```
-
-Default: `{}`
-
-### <a name="input_tags"></a> [tags](#input\_tags)
-
-Description: (Optional) Tags of the resource.
-
-Type: `map(string)`
-
-Default: `null`
-
-### <a name="input_txt_records"></a> [txt\_records](#input\_txt\_records)
-
-Description: A map of objects where each object contains information to create a TXT record.
-
-Type:
-
-```hcl
-map(object({
-    name                = string
-    resource_group_name = string
-    zone_name           = string
-    ttl                 = number
-    records = map(object({
-      value = string
-    }))
-    tags = optional(map(string), null)
-  }))
-```
-
-Default: `{}`
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_name"></a> [name](#input\_name) | The name of the this resource. | `string` | n/a | yes |
+| <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | The resource group where the resources will be deployed. | `string` | n/a | yes |
+| <a name="input_a_records"></a> [a\_records](#input\_a\_records) | A map of objects where each object contains information to create a A record. | <pre>map(object({<br/>    name                = string<br/>    resource_group_name = string<br/>    zone_name           = string<br/>    ttl                 = number<br/>    records             = optional(list(string))<br/>    target_resource_id  = optional(string)<br/>    tags                = optional(map(string), null)<br/>  }))</pre> | `{}` | no |
+| <a name="input_aaaa_records"></a> [aaaa\_records](#input\_aaaa\_records) | A map of objects where each object contains information to create a AAAA record. | <pre>map(object({<br/>    name                = string<br/>    resource_group_name = string<br/>    zone_name           = string<br/>    ttl                 = number<br/>    records             = optional(list(string))<br/>    target_resource_id  = optional(string)<br/>    tags                = optional(map(string), null)<br/>  }))</pre> | `{}` | no |
+| <a name="input_caa_records"></a> [caa\_records](#input\_caa\_records) | A map of objects where each object contains information to create a CAA record. | <pre>map(object({<br/>    name                = string<br/>    resource_group_name = string<br/>    zone_name           = string<br/>    ttl                 = number<br/>    record = map(object({<br/>      flags = string<br/>      tag   = string<br/>      value = string<br/>    }))<br/>    tags = optional(map(string), null)<br/>  }))</pre> | `{}` | no |
+| <a name="input_cname_records"></a> [cname\_records](#input\_cname\_records) | A map of objects where each object contains information to create a CNAME record. | <pre>map(object({<br/>    name                = string<br/>    resource_group_name = string<br/>    zone_name           = string<br/>    ttl                 = number<br/>    record              = string<br/>    tags                = optional(map(string), null)<br/>    target_resource_id  = optional(string)<br/>  }))</pre> | `{}` | no |
+| <a name="input_enable_telemetry"></a> [enable\_telemetry](#input\_enable\_telemetry) | This variable controls whether or not telemetry is enabled for the module.<br/>For more information see <https://aka.ms/avm/telemetryinfo>.<br/>If it is set to false, then no telemetry will be collected. | `bool` | `true` | no |
+| <a name="input_lock"></a> [lock](#input\_lock) | Controls the Resource Lock configuration for this resource. The following properties can be specified:<br/><br/>  - `kind` - (Required) The type of lock. Possible values are `"CanNotDelete"` and `"ReadOnly"`.<br/>  - `name` - (Optional) The name of the lock. If not specified, a name will be generated based on the `kind` value. Changing this forces the creation of a new resource. | <pre>object({<br/>    kind = string<br/>    name = optional(string, null)<br/>  })</pre> | `null` | no |
+| <a name="input_mx_records"></a> [mx\_records](#input\_mx\_records) | A map of objects where each object contains information to create a MX record. | <pre>map(object({<br/>    name                = optional(string, "@")<br/>    resource_group_name = string<br/>    zone_name           = string<br/>    ttl                 = number<br/>    records = map(object({<br/>      preference = number<br/>      exchange   = string<br/>    }))<br/>    tags = optional(map(string), null)<br/>  }))</pre> | `{}` | no |
+| <a name="input_ns_records"></a> [ns\_records](#input\_ns\_records) | A map of objects where each object contains information to create a NS record. | <pre>map(object({<br/>    name                = string<br/>    resource_group_name = string<br/>    zone_name           = string<br/>    ttl                 = number<br/>    records             = list(string)<br/>    tags                = optional(map(string), null)<br/>  }))</pre> | `{}` | no |
+| <a name="input_ptr_records"></a> [ptr\_records](#input\_ptr\_records) | A map of objects where each object contains information to create a PTR record. | <pre>map(object({<br/>    name                = string<br/>    resource_group_name = string<br/>    zone_name           = string<br/>    ttl                 = number<br/>    records             = list(string)<br/>    tags                = optional(map(string), null)<br/>  }))</pre> | `{}` | no |
+| <a name="input_srv_records"></a> [srv\_records](#input\_srv\_records) | A map of objects where each object contains information to create a SRV record. | <pre>map(object({<br/>    name                = string<br/>    resource_group_name = string<br/>    zone_name           = string<br/>    ttl                 = number<br/>    records = map(object({<br/>      priority = number<br/>      weight   = number<br/>      port     = number<br/>      target   = string<br/>    }))<br/>    tags = optional(map(string), null)<br/>  }))</pre> | `{}` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | (Optional) Tags of the resource. | `map(string)` | `null` | no |
+| <a name="input_txt_records"></a> [txt\_records](#input\_txt\_records) | A map of objects where each object contains information to create a TXT record. | <pre>map(object({<br/>    name                = string<br/>    resource_group_name = string<br/>    zone_name           = string<br/>    ttl                 = number<br/>    records = map(object({<br/>      value = string<br/>    }))<br/>    tags = optional(map(string), null)<br/>  }))</pre> | `{}` | no |
 
 ## Outputs
 
-The following outputs are exported:
-
-### <a name="output_a_record_outputs"></a> [a\_record\_outputs](#output\_a\_record\_outputs)
-
-Description: The a record output
-
-### <a name="output_aaaa_record_outputs"></a> [aaaa\_record\_outputs](#output\_aaaa\_record\_outputs)
-
-Description: The aaaa record output
-
-### <a name="output_caa_record_outputs"></a> [caa\_record\_outputs](#output\_caa\_record\_outputs)
-
-Description: The caa record output
-
-### <a name="output_cname_record_outputs"></a> [cname\_record\_outputs](#output\_cname\_record\_outputs)
-
-Description: The cname record output
-
-### <a name="output_max_number_of_record_sets"></a> [max\_number\_of\_record\_sets](#output\_max\_number\_of\_record\_sets)
-
-Description: Maximum number of Records in Zone output
-
-### <a name="output_mx_record_outputs"></a> [mx\_record\_outputs](#output\_mx\_record\_outputs)
-
-Description: The mx record output
-
-### <a name="output_name_servers"></a> [name\_servers](#output\_name\_servers)
-
-Description: List of values that make up NS Record for Zone
-
-### <a name="output_ns_record_outputs"></a> [ns\_record\_outputs](#output\_ns\_record\_outputs)
-
-Description: The ns record output
-
-### <a name="output_number_of_record_sets"></a> [number\_of\_record\_sets](#output\_number\_of\_record\_sets)
-
-Description: Number of records in DNS Zone
-
-### <a name="output_ptr_record_outputs"></a> [ptr\_record\_outputs](#output\_ptr\_record\_outputs)
-
-Description: The ptr record output
-
-### <a name="output_resource_id"></a> [resource\_id](#output\_resource\_id)
-
-Description: Id of dns zone
-
-### <a name="output_srv_record_outputs"></a> [srv\_record\_outputs](#output\_srv\_record\_outputs)
-
-Description: The srv record output
-
-### <a name="output_txt_record_outputs"></a> [txt\_record\_outputs](#output\_txt\_record\_outputs)
-
-Description: The txt record output
+| Name | Description |
+|------|-------------|
+| <a name="output_a_record_outputs"></a> [a\_record\_outputs](#output\_a\_record\_outputs) | The a record output |
+| <a name="output_aaaa_record_outputs"></a> [aaaa\_record\_outputs](#output\_aaaa\_record\_outputs) | The aaaa record output |
+| <a name="output_caa_record_outputs"></a> [caa\_record\_outputs](#output\_caa\_record\_outputs) | The caa record output |
+| <a name="output_cname_record_outputs"></a> [cname\_record\_outputs](#output\_cname\_record\_outputs) | The cname record output |
+| <a name="output_lock"></a> [lock](#output\_lock) | The lock resource. This will be `null` if no lock is configured. |
+| <a name="output_max_number_of_record_sets"></a> [max\_number\_of\_record\_sets](#output\_max\_number\_of\_record\_sets) | Maximum number of Records in Zone output |
+| <a name="output_mx_record_outputs"></a> [mx\_record\_outputs](#output\_mx\_record\_outputs) | The mx record output |
+| <a name="output_name_servers"></a> [name\_servers](#output\_name\_servers) | List of values that make up NS Record for Zone |
+| <a name="output_ns_record_outputs"></a> [ns\_record\_outputs](#output\_ns\_record\_outputs) | The ns record output |
+| <a name="output_number_of_record_sets"></a> [number\_of\_record\_sets](#output\_number\_of\_record\_sets) | Number of records in DNS Zone |
+| <a name="output_ptr_record_outputs"></a> [ptr\_record\_outputs](#output\_ptr\_record\_outputs) | The ptr record output |
+| <a name="output_resource_id"></a> [resource\_id](#output\_resource\_id) | Id of dns zone |
+| <a name="output_srv_record_outputs"></a> [srv\_record\_outputs](#output\_srv\_record\_outputs) | The srv record output |
+| <a name="output_txt_record_outputs"></a> [txt\_record\_outputs](#output\_txt\_record\_outputs) | The txt record output |
 
 ## Modules
 
