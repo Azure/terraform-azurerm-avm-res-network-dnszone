@@ -32,7 +32,6 @@ resource "azurerm_dns_aaaa_record" "record" {
   depends_on = [azurerm_dns_zone.zone]
 }
 
-
 resource "azurerm_dns_caa_record" "record" {
   for_each = var.caa_records
 
