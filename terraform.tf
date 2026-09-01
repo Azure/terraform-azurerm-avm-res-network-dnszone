@@ -9,7 +9,7 @@ terraform {
     # TODO: Ensure all required providers are listed here and the version property includes a constraint on the maximum major version.
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.71, < 5.0"
+      version = ">= 3.71, < 5.1"
     }
     modtm = {
       source  = "azure/modtm"
