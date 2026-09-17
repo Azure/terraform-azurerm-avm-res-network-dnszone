@@ -54,7 +54,7 @@ module "dns_zones" {
   aaaa_records        = local.aaaa_records
   caa_records         = local.caa_records
   cname_records       = local.cname_records
-  enable_telemetry    = local.enable_telemetry
+  enable_telemetry    = false
   mx_records          = local.mx_records
   ns_records          = local.ns_records
   ptr_records         = local.ptr_records
