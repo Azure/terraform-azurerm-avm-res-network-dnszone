@@ -68,7 +68,6 @@ locals {
       }
     }
   }
-  enable_telemetry = false
   mx_records = {
     "mx_record" = {
       name                = "mx_record"
