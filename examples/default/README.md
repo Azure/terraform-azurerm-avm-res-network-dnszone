@@ -53,6 +53,7 @@ resource "azurerm_resource_group" "avmrg" {
 module "dns_zones" {
   source = "../../"
 
+  location = var.location
   # source             = "Azure/avm-<res/ptn>-<name>/azurerm"
   # ...
   name                = local.name
@@ -107,6 +108,14 @@ If it is set to false, then no telemetry will be collected.
 Type: `bool`
 
 Default: `true`
+
+### <a name="input_location"></a> [location](#input\_location)
+
+Description: The Azure region for this module's resources or telemetry deployment.
+
+Type: `string`
+
+Default: `"eastus"`
 
 ## Outputs
 

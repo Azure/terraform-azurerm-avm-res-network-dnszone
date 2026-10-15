@@ -46,6 +46,7 @@ resource "azurerm_resource_group" "avmrg" {
 module "dns_zones" {
   source = "../../"
 
+  location = var.location
   # source             = "Azure/avm-<res/ptn>-<name>/azurerm"
   # ...
   name                = local.name
