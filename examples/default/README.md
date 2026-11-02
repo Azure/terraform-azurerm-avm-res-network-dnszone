@@ -42,7 +42,7 @@ resource "random_integer" "region_index" {
 # This ensures we have unique CAF compliant names for our resources.
 module "naming" {
   source  = "Azure/avm-utl-naming/azure"
-  version = "0.2.0"
+  version = "0.3.0"
 }
 
 resource "azurerm_resource_group" "avmrg" {
@@ -53,7 +53,6 @@ resource "azurerm_resource_group" "avmrg" {
 module "dns_zones" {
   source = "../../"
 
-  location = var.location
   # source             = "Azure/avm-<res/ptn>-<name>/azurerm"
   # ...
   name                = local.name
@@ -63,6 +62,7 @@ module "dns_zones" {
   caa_records         = local.caa_records
   cname_records       = local.cname_records
   enable_telemetry    = var.enable_telemetry
+  location            = var.location
   mx_records          = local.mx_records
   ns_records          = local.ns_records
   ptr_records         = local.ptr_records
@@ -175,7 +175,7 @@ Version:
 
 Source: Azure/avm-utl-naming/azure
 
-Version: 0.2.0
+Version: 0.3.0
 
 ### <a name="module_regions"></a> [regions](#module\_regions)
 
